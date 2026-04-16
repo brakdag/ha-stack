@@ -17,3 +17,5 @@ homeassistant_config/secrets.yaml
 homeassistant_config/.HA_VERSION
 homeassistant_config/.ha_run.lock
 homeassistant_config/custom_components/
+
+paser.log
