@@ -14,3 +14,6 @@ homeassistant_config/secrets.yaml
 
 # Ignore OS files
 .DS_Store
+homeassistant_config/.HA_VERSION
+homeassistant_config/.ha_run.lock
+homeassistant_config/custom_components/
