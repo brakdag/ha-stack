@@ -1,0 +1,111 @@
+- id: '1762040866814'
+  alias: Timbre
+  description: ''
+  triggers:
+  - type: opened
+    device_id: 5c18a292123bf3cc8f0163c495bbf624
+    entity_id: 63d34199ef2236cd886867071269b721
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - device_id: a3087ffc0393606983f21017932ea563
+    domain: mobile_app
+    type: notify
+    message: Han tocado el timbre en San Andres 129.
+    title: Notificacion de timbre presionado.
+  - device_id: 14e910fab7c7f4092ebed89f6ec66fd9
+    domain: mobile_app
+    type: notify
+    message: Han tocado el timbre Timbre
+    title: Notificacion de timbre
+  mode: single
+- id: '1762301412706'
+  alias: Disparador Inyeccion Cero (Cada 40s)
+  description: Llama al script de control de inyección cero
+  triggers:
+  - trigger: time_pattern
+    seconds: /20
+  conditions:
+  - condition: state
+    entity_id: sun.sun
+    state: above_horizon
+  actions:
+  - action: script.control_inyeccion_cero_optimizado_gemini_12_11_2025
+    data: {}
+  mode: single
+- id: '1762549192439'
+  alias: Alarma Cerco Elèctrico
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.cerco_genno_sensor_alarma_disparo
+    from: 'off'
+    to: 'on'
+  conditions: []
+  actions:
+  - device_id: 14e910fab7c7f4092ebed89f6ec66fd9
+    domain: mobile_app
+    type: notify
+    message: Alarma
+    title: Cerco Elèctrico
+  - device_id: a3087ffc0393606983f21017932ea563
+    domain: mobile_app
+    type: notify
+    message: Alarma
+    title: Cerco Electrico
+  mode: single
+- id: '1763109649701'
+  alias: Ejecutar Gestor de Termo (Sondeo)
+  description: Ejecuta el script de sondeo del termo cada 10 minutos
+  triggers:
+  - minutes: /3
+    trigger: time_pattern
+  conditions:
+  - condition: state
+    entity_id: sun.sun
+    state: above_horizon
+  actions:
+  - action: script.1764119851259
+    data: {}
+  mode: single
+- id: '1767546726888'
+  alias: Alarma PIR
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.sensor_alarma_taller_estado_alarma_taller
+    id: Alarma PIR
+    from: 'off'
+    to: 'on'
+  conditions: []
+  actions:
+  - device_id: 14e910fab7c7f4092ebed89f6ec66fd9
+    domain: mobile_app
+    type: notify
+    message: Alarma Activada CASA
+    title: ALARMA
+  - device_id: a3087ffc0393606983f21017932ea563
+    domain: mobile_app
+    type: notify
+    message: ALARMA CASA
+    title: ALARMA CASA
+  mode: single
+- id: '1774615592121'
+  alias: Educacionales
+  description: Notificación dinámica desde sensor
+  mode: single
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.llamado_docente_educacionales
+  conditions: []
+  actions:
+  - service: notify.mobile_app_sm_a107m
+    data:
+      title: Llamado en Escuela {{ state_attr('sensor.llamado_docente_educacionales',
+        'Escuela') }}
+      message: 'Materia: {{ state_attr(''sensor.llamado_docente_educacionales'', ''Materia'')
+        }}'

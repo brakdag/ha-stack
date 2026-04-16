@@ -1,0 +1,16 @@
+# Ignore Home Assistant database and logs
+homeassistant_config/*.db
+homeassistant_config/*.db-wal
+homeassistant_config/*.db-shm
+homeassistant_config/*.log
+homeassistant_config/*.log.*
+homeassistant_config/deps/
+homeassistant_config/tts/
+homeassistant_config/__pycache__/
+homeassistant_config/.storage/ 
+
+# Ignore secrets
+homeassistant_config/secrets.yaml
+
+# Ignore OS files
+.DS_Store

@@ -1,0 +1,29 @@
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+sensor:
+  - platform: history_stats
+    name: "Tiempo Encendido Termotanque Hoy"
+    unique_id: tiempo_termo_hoy_hist_stats
+    entity_id: switch.esp01_relay_termotaque 
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0, minute=0, second=0, microsecond=0) }}'
+    end: '{{ now() }}'
+
+mqtt:
+    sensor:
+        - name: "Llamado Docente Educacionales"
+          state_topic: "educacionales/llamados"
+          value_template: "{{ value_json.escuela }}"
+          json_attributes_topic: "educacionales/llamados"
+          unique_id: "llamado_docente_educacionales"
