@@ -1,6 +1,7 @@
 
 # Loads default set of integrations. Do not remove.
 default_config:
+recorder: !include recorder.yaml
 
 # Load frontend themes from the themes folder
 frontend:
