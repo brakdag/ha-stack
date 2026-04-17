@@ -17,6 +17,7 @@ Infrastructure-as-Code (IaC) repository for my Home Assistant instance, running 
 - **Updates:** Keep the image version pinned in `docker-compose.yml`.
 - **Backups:** Ensure the `homeassistant_config/` directory is backed up regularly.
 - **Security:** Never commit `secrets.yaml` to the repository.
+- **Operational Policy:** Never modify any files unless explicitly requested by the user.
 
 ## Hardware
 Running on an Intel Atom N2600 (2GB RAM). See `docs/HARDWARE_SPEC.md` for details.
