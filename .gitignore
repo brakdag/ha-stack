@@ -19,3 +19,4 @@ homeassistant_config/.ha_run.lock
 homeassistant_config/custom_components/
 
 paser.log
+src* 
